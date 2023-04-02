@@ -68,12 +68,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\edit.png" />
+    <Content Include="css\js\JsAlarms.js" />
     <Content Include="css\style.css" />
     <Content Include="css\trash.png" />
     <Content Include="Database\StoredProcedures\spDeleteAlarm.sql" />
     <Content Include="Database\StoredProcedures\spGetAlarms.sql" />
     <Content Include="Database\StoredProcedures\spSetAlarm.sql" />
     <Content Include="Views\alarmPage.aspx" />
+    <Content Include="Views\InfoAlarm.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +89,13 @@
     </Compile>
     <Compile Include="Views\alarmPage.aspx.designer.cs">
       <DependentUpon>alarmPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InfoAlarm.aspx.cs">
+      <DependentUpon>InfoAlarm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\InfoAlarm.aspx.designer.cs">
+      <DependentUpon>InfoAlarm.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

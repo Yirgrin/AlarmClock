@@ -16,11 +16,15 @@
         rel="stylesheet" />
     <!-- Stylesheet -->
     <link href="../css/style.css" rel="stylesheet" />
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../css/js/JsAlarms.js"></script>
 </head>
+
 <body>
     <form id="form1" runat="server">
         <div class="wrapper">
-            <div class="timerDisplay">00:00:00</div>
+            <div class="timerDisplay" id="lbltime" runat="server">00:00:00</div>
             <div class="container">
                 <div class="inputs">
                     <input type="number" id="hourInput" runat="server"
@@ -39,14 +43,14 @@
                     <div>
                         <span style="font-family: monospace; 
                         font-size: 20px; color: white; display: grid;
-                        margin-top: 1.5em; border-bottom: 1px solid #898f9b; padding-bottom: 0.6em;">
+                        margin-top: 1.5em; border-bottom: 1px solid #898f9b; padding-bottom: 0.6em;"> 
                         <%#Eval ("hour")%>:<%#Eval ("minutes")%> | <%#Eval ("alarmName")%></span>
                     </div>
                     <div>
-                       <button dataid='<%# Eval("id")%>' runat="server" onserverclick="btnDeleteAlarm_ServerClick" style="font-size: 2em; border: none;cursor: pointer; background-color: transparent;">
+                       <button dataid='<%# Eval("alarmId")%>' runat="server" onserverclick="btnDeleteAlarm_ServerClick" style="font-size: 2em; border: none;cursor: pointer; background-color: transparent;">
                           <img src="../css/trash.png" /></button>
-                       <%--<button style="font-size: 2em; border: none;cursor: pointer; background-color: transparent;" dataid='<%# Eval("id")%>' runat="server" onserverclick="btnEditAlarm_ServerClick1">
-                          <img src="../css/edit.png" /></button>--%>
+                       <button data-id='<%# Eval("alarmId")%>' runat="server" onserverclick="btnEditAlarm_ServerClick" style="font-size: 2em; border: none;cursor: pointer; background-color: transparent;">
+                          <img src="../css/edit.png" /></button>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>

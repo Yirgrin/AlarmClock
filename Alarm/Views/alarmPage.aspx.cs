@@ -8,15 +8,21 @@ using m = Alarm.Model;
 using c = Alarm.Controller;
 using System.Web.UI.HtmlControls;
 using static System.Collections.Specialized.BitVector32;
+using System.Timers;
+using System.Threading;
+
 
 namespace Alarm.Views
 {
+
     public partial class alarmPage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             LoadAlarm();
-        }
+            CheckAlarms();
+        }   
 
         protected void LoadAlarm()
         {
@@ -31,10 +37,24 @@ namespace Alarm.Views
             string alarmName = nameInput.Value.ToString();
 
             c.AlarmC alarmController = new c.AlarmC();
-            alarmController.SetAlarm(alarmHour, alarmMinutes, alarmName); 
-
+            alarmController.SetAlarm(alarmHour, alarmMinutes, alarmName);
+            LoadAlarm();
         }
 
+        protected void CheckAlarms()
+        {
+            string msg = string.Empty;
+            List<m.Alarm> alarmList = new List<m.Alarm>();
+            foreach (m.Alarm alarm in alarmList)
+            {
+                DateTime now = DateTime.Now;
+                if (now.Hour == alarm.hour && now.Minute == alarm.minutes)
+                {
+                    msg = $"alert('¡Alarma sonando!')";
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", msg, true);
+                }
+            }
+        }
         protected void btnDeleteAlarm_ServerClick(object sender, EventArgs e)
         {
             string msg = string.Empty;
@@ -56,5 +76,9 @@ namespace Alarm.Views
             }
         }
 
+        protected void btnEditAlarm_ServerClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace Alarm.Model
 {
     public class Alarm
     {
-        public int id { get; set; }
+        public int alarmId { get; set; }
         public int hour {get; set;}
         public int minutes {get; set;}
         public string alarmName {get; set;}

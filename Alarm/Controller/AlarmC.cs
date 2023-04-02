@@ -64,6 +64,7 @@ namespace Alarm.Controller
             {
                 alarmList.Add(new m.Alarm
                 {
+                    alarmId = Convert.ToInt32(row["alarmId"]),
                     hour = Convert.ToInt32(row["hour"]),
                     minutes = Convert.ToInt32(row["minutes"]),
                     alarmName = Convert.ToString(row["name"])
