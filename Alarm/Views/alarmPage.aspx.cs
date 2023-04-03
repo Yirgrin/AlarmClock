@@ -21,7 +21,15 @@ namespace Alarm.Views
         {
 
             LoadAlarm();
-            CheckAlarms();
+            
+            // Crear un temporizador
+            var timer = new System.Timers.Timer();
+            // Configurar el temporizador para que se ejecute cada 60 segundos
+            timer.Interval = 60000;
+            // Asignar el método que contiene el foreach al evento Elapsed del temporizador
+            timer.Elapsed += new ElapsedEventHandler(CheckAlarms);
+            // Iniciar el temporizador
+            timer.Start();
         }   
 
         protected void LoadAlarm()
@@ -29,6 +37,13 @@ namespace Alarm.Views
             c.AlarmC alarmController = new c.AlarmC();
             alarmsList.DataSource = alarmController.GetAlarms();
             alarmsList.DataBind();
+            AlarmList();
+        }
+
+        static List<m.Alarm> AlarmList()
+        {
+            c.AlarmC alarmController = new c.AlarmC();
+            return alarmController.GetAlarms();
         }
         protected void setAlarm_ServerClick(object sender, EventArgs e)
         {
@@ -38,20 +53,22 @@ namespace Alarm.Views
 
             c.AlarmC alarmController = new c.AlarmC();
             alarmController.SetAlarm(alarmHour, alarmMinutes, alarmName);
+            hourInput.Value = "";
+            minutesInput.Value = "";
+            nameInput.Value = "";
             LoadAlarm();
         }
 
-        protected void CheckAlarms()
-        {
+        static void CheckAlarms(object source, ElapsedEventArgs e)
+       {
             string msg = string.Empty;
-            List<m.Alarm> alarmList = new List<m.Alarm>();
-            foreach (m.Alarm alarm in alarmList)
+            List<m.Alarm> alarmList = AlarmList();
+            foreach (m.Alarm a in alarmList)
             {
                 DateTime now = DateTime.Now;
-                if (now.Hour == alarm.hour && now.Minute == alarm.minutes)
+                if (now.Hour == a.hour && now.Minute == a.minutes)
                 {
-                    msg = $"alert('¡Alarma sonando!')";
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", msg, true);
+                    Console.WriteLine("¡Alarma sonando!");
                 }
             }
         }
@@ -78,7 +95,44 @@ namespace Alarm.Views
 
         protected void btnEditAlarm_ServerClick(object sender, EventArgs e)
         {
+            string msg = string.Empty;
+            var button = (HtmlButton)sender;
+            int alarmId = Convert.ToInt32(button.Attributes["data-id"]);
+            Session["alarmId"] = alarmId;
 
+            List<m.Alarm> alarmList = AlarmList();
+            foreach (m.Alarm a in alarmList)
+            {
+                if (alarmId == a.alarmId)
+                {
+                    lblalarm.InnerText = a.hour.ToString() + " : " + a.minutes.ToString() + " | " + a.alarmName;
+                }
+            }
+
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction",
+               "showModal()", true);
+        }
+
+        protected void ConfirmEdit_ServerClick(object sender, EventArgs e)
+        {
+            string msg = string.Empty;
+            int alarmId = Convert.ToInt32(Session["alarmId"]);
+            int newHour = Convert.ToInt16(IneditHour.Value);
+            int newMinutes = Convert.ToInt16(IneditMinutes.Value);
+            string newName = IneditName.Value.ToString();
+            c.AlarmC alarmController = new c.AlarmC();
+
+            if (alarmController.EditAlarm(alarmId, newHour, newMinutes, newName))
+            {
+                msg = $"alert('¡Alarma editada!')";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", msg, true);
+                LoadAlarm();
+            }
+            else
+            {
+                msg = $"alert('Ocurrió un error al eliminar la alarma.')";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", msg, true);
+            }
         }
     }
 }

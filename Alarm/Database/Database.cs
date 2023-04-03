@@ -40,6 +40,20 @@ namespace Alarm.Database
             this.ExecuteQuery("[dbo].[spDeleteAlarm]", param);
         }
 
+        public void EditAlarm(int alarmId, int newHour, int newMinutes, string newName)
+        {
+            List<SqlParameter> param = new List<SqlParameter>()
+            {
+                new SqlParameter("@alarmId", alarmId),
+                new SqlParameter("@newHour", newHour),
+                new SqlParameter("@newMinutes", newMinutes),
+                new SqlParameter("@newName", newName)
+        };
+
+            this.ExecuteQuery("[dbo].[spEditAlarm]", param);
+        }
+
+
         public DataTable Fill(string storedProcedure, List<SqlParameter> param)
         {
             try

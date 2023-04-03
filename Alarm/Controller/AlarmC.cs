@@ -54,6 +54,21 @@ namespace Alarm.Controller
             }
         }
 
+        public bool EditAlarm(int alarmId, int newHour, int newMinutes, string newName)
+        {
+            try
+            {
+                Database.Database db = new Database.Database();
+
+                db.EditAlarm(alarmId, newHour, newMinutes, newName);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public List<m.Alarm> ConvertDSToList(DataTable ds)
         {

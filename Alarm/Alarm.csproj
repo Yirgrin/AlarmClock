@@ -68,10 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\edit.png" />
-    <Content Include="css\js\JsAlarms.js" />
+    <Content Include="css\js\JsAlarm.js" />
     <Content Include="css\style.css" />
     <Content Include="css\trash.png" />
     <Content Include="Database\StoredProcedures\spDeleteAlarm.sql" />
+    <Content Include="Database\StoredProcedures\spEditAlarm.sql" />
     <Content Include="Database\StoredProcedures\spGetAlarms.sql" />
     <Content Include="Database\StoredProcedures\spSetAlarm.sql" />
     <Content Include="Views\alarmPage.aspx" />
