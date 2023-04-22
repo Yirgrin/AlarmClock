@@ -11,7 +11,6 @@ using static System.Collections.Specialized.BitVector32;
 using System.Timers;
 using System.Threading;
 
-
 namespace Alarm.Views
 {
 
@@ -19,17 +18,7 @@ namespace Alarm.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             LoadAlarm();
-            
-            // Crear un temporizador
-            var timer = new System.Timers.Timer();
-            // Configurar el temporizador para que se ejecute cada 60 segundos
-            timer.Interval = 60000;
-            // Asignar el método que contiene el foreach al evento Elapsed del temporizador
-            timer.Elapsed += new ElapsedEventHandler(CheckAlarms);
-            // Iniciar el temporizador
-            timer.Start();
         }   
 
         protected void LoadAlarm()
@@ -37,14 +26,8 @@ namespace Alarm.Views
             c.AlarmC alarmController = new c.AlarmC();
             alarmsList.DataSource = alarmController.GetAlarms();
             alarmsList.DataBind();
-            AlarmList();
         }
 
-        static List<m.Alarm> AlarmList()
-        {
-            c.AlarmC alarmController = new c.AlarmC();
-            return alarmController.GetAlarms();
-        }
         protected void setAlarm_ServerClick(object sender, EventArgs e)
         {
             int alarmHour = Convert.ToInt16(hourInput.Value);
@@ -59,16 +42,18 @@ namespace Alarm.Views
             LoadAlarm();
         }
 
-        static void CheckAlarms(object source, ElapsedEventArgs e)
-       {
+        protected void CheckAlarms()
+        {
             string msg = string.Empty;
-            List<m.Alarm> alarmList = AlarmList();
-            foreach (m.Alarm a in alarmList)
+            c.AlarmC alarmController = new c.AlarmC();
+            List<m.Alarm> alarmList = alarmController.GetAlarms();
+            var now = DateTime.Now;
+            foreach (var alarm in alarmList)
             {
-                DateTime now = DateTime.Now;
-                if (now.Hour == a.hour && now.Minute == a.minutes)
+                if (now.Hour == alarm.hour && now.Minute == alarm.minutes)
                 {
-                    Console.WriteLine("¡Alarma sonando!");
+                    msg = $"alert('¡Alarma sonando!')";
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", msg, true);
                 }
             }
         }
@@ -100,7 +85,8 @@ namespace Alarm.Views
             int alarmId = Convert.ToInt32(button.Attributes["data-id"]);
             Session["alarmId"] = alarmId;
 
-            List<m.Alarm> alarmList = AlarmList();
+            c.AlarmC alarmController = new c.AlarmC();
+            List<m.Alarm> alarmList = alarmController.GetAlarms();
             foreach (m.Alarm a in alarmList)
             {
                 if (alarmId == a.alarmId)
