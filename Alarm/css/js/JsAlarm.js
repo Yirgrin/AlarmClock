@@ -15,7 +15,7 @@ window.onload = function () {
 setInterval(CheckAlarms, 1000);
 
 
-function showModal(title, msg) {
+function showModal() {
 
     var myModal = new bootstrap.Modal(document.getElementById("exampleModal"), {});
     document.onreadystatechange = function () {

@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\clock.png" />
     <Content Include="css\edit.png" />
     <Content Include="css\js\JsAlarm.js" />
     <Content Include="css\style.css" />

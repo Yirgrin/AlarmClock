@@ -80,7 +80,6 @@ namespace Alarm.Views
 
         protected void btnEditAlarm_ServerClick(object sender, EventArgs e)
         {
-            string msg = string.Empty;
             var button = (HtmlButton)sender;
             int alarmId = Convert.ToInt32(button.Attributes["data-id"]);
             Session["alarmId"] = alarmId;
@@ -119,6 +118,11 @@ namespace Alarm.Views
                 msg = $"alert('Ocurrió un error al eliminar la alarma.')";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", msg, true);
             }
+        }
+
+        protected void checkAlarm_ServerClick(object sender, EventArgs e)
+        {
+            CheckAlarms(); 
         }
     }
 }

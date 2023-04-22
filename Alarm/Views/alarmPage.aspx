@@ -36,6 +36,8 @@
                         placeholder="00" min="0" max="59" />
                     <input type="text" id="nameInput" runat="server"
                         placeholder="alarm name" />
+                    <button id="checkAlarm" runat="server" onserverclick="checkAlarm_ServerClick" style="font-size: 2em; border: none; cursor: pointer; background-color: transparent;">
+                        <img src="../css/clock.png" /></button>
                 </div>
             </div>
             <button id="setAlarm" runat="server" onserverclick="setAlarm_ServerClick">Set Alarm</button>
@@ -57,7 +59,7 @@
             </asp:Repeater>
         </div>
 
-        <!-- Modal -->
+        <!-- Modal Edit-->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
