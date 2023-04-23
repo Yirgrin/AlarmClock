@@ -10,13 +10,13 @@ namespace Alarm.Controller
 {
     public class AlarmC
     {
-        public bool SetAlarm(int hour, int minutes, string alarmName)
+        public bool SetAlarm(int hour, int minutes, string alarmName, string alarmState)
         {
             try
             {
                 Database.Database db = new Database.Database();
 
-                db.SetAlarm(hour, minutes, alarmName);
+                db.SetAlarm(hour, minutes, alarmName, alarmState);
 
                 return true;
             }
@@ -54,13 +54,13 @@ namespace Alarm.Controller
             }
         }
 
-        public bool EditAlarm(int alarmId, int newHour, int newMinutes, string newName)
+        public bool EditAlarm(int alarmId, int newHour, int newMinutes, string newName, string newState)
         {
             try
             {
                 Database.Database db = new Database.Database();
 
-                db.EditAlarm(alarmId, newHour, newMinutes, newName);
+                db.EditAlarm(alarmId, newHour, newMinutes, newName, newState);
 
                 return true;
             }
@@ -82,7 +82,8 @@ namespace Alarm.Controller
                     alarmId = Convert.ToInt32(row["alarmId"]),
                     hour = Convert.ToInt32(row["hour"]),
                     minutes = Convert.ToInt32(row["minutes"]),
-                    alarmName = Convert.ToString(row["name"])
+                    alarmName = Convert.ToString(row["name"]),
+                    alarmState = Convert.ToString(row["alarmState"]),
                 });
             }
 

@@ -70,6 +70,7 @@
     <Content Include="css\clock.png" />
     <Content Include="css\edit.png" />
     <Content Include="css\js\JsAlarm.js" />
+    <Content Include="css\pause.png" />
     <Content Include="css\style.css" />
     <Content Include="css\trash.png" />
     <Content Include="Database\StoredProcedures\spDeleteAlarm.sql" />

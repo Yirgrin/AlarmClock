@@ -96,6 +96,15 @@ namespace Alarm.Views
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblalarm;
 
         /// <summary>
+        /// Control lblstate.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblstate;
+
+        /// <summary>
         /// Control IneditHour.
         /// </summary>
         /// <remarks>
@@ -121,5 +130,14 @@ namespace Alarm.Views
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText IneditName;
+
+        /// <summary>
+        /// Control dropDownState.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect dropDownState;
     }
 }

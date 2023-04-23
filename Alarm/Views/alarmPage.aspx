@@ -7,8 +7,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Alarm Page</title>
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"/>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <!-- Font Awesome Icons -->
     <link
         rel="stylesheet"
@@ -70,21 +70,29 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <h4 id="lblalarm" runat="server" style="text-align: center;"> </h4>
+                        <h4 id="lblalarm" runat="server" style="text-align: center;"></h4>
+                        <h4 id="lblstate" runat="server" style="text-align: center;"></h4>
                         <div class="container">
                             <div class="inputs">
                                 <input type="number" id="IneditHour" runat="server"
-                                    placeholder="00" min="0" max="23" />
+                                    placeholder="00" min="0" max="23"> 
                                 <input type="number" id="IneditMinutes" runat="server"
                                     placeholder="00" min="0" max="59" />
                                 <input type="text" id="IneditName" runat="server"
                                     placeholder="alarm name" />
                             </div>
                         </div>
+                        <div style="text-align: center; display: flex; width: 200px; gap: 1em; margin-top: 1.5em; border: 1px solid; border-radius: 0.3em;  margin-left: 13px; color: lightslategrey">
+                            <select id="dropDownState" runat="server" class="form-select" aria-label=".form-select-sm example">
+                                <option></option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                        <button dataId='<%# Eval("alarmId")%>' runat="server" onserverclick="ConfirmEdit_ServerClick" class="btn btn-secondary">Confirm</button>
+                        <button dataid='<%# Eval("alarmId")%>' runat="server" onserverclick="ConfirmEdit_ServerClick" class="btn btn-secondary">Confirm</button>
                     </div>
                 </div>
             </div>

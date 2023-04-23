@@ -12,13 +12,14 @@ namespace Alarm.Database
     {
         SqlConnection connection = new SqlConnection("Data Source=localhost;Initial Catalog=AlarmClock;Integrated Security=True");
 
-        public void SetAlarm (int hour, int minutes, string alarmName)
+        public void SetAlarm (int hour, int minutes, string alarmName, string alarmState)
         {
             List<SqlParameter> param = new List<SqlParameter>()
             {
                 new SqlParameter("@hour", hour),
                 new SqlParameter("@minutes", minutes),
-                new SqlParameter("@name", alarmName)
+                new SqlParameter("@name", alarmName),
+                new SqlParameter("@state", alarmState)
             };
 
             this.ExecuteQuery("[dbo].[spSetAlarm]", param);
@@ -40,14 +41,16 @@ namespace Alarm.Database
             this.ExecuteQuery("[dbo].[spDeleteAlarm]", param);
         }
 
-        public void EditAlarm(int alarmId, int newHour, int newMinutes, string newName)
+        public void EditAlarm(int alarmId, int newHour, int newMinutes, string newName, string newState)
         {
             List<SqlParameter> param = new List<SqlParameter>()
             {
                 new SqlParameter("@alarmId", alarmId),
                 new SqlParameter("@newHour", newHour),
                 new SqlParameter("@newMinutes", newMinutes),
-                new SqlParameter("@newName", newName)
+                new SqlParameter("@newName", newName),
+                new SqlParameter("@newState", newState)
+
         };
 
             this.ExecuteQuery("[dbo].[spEditAlarm]", param);

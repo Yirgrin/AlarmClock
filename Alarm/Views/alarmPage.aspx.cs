@@ -33,9 +33,10 @@ namespace Alarm.Views
             int alarmHour = Convert.ToInt16(hourInput.Value);
             int alarmMinutes = Convert.ToInt16(minutesInput.Value);
             string alarmName = nameInput.Value.ToString();
+            string alarmState = "Active";
 
             c.AlarmC alarmController = new c.AlarmC();
-            alarmController.SetAlarm(alarmHour, alarmMinutes, alarmName);
+            alarmController.SetAlarm(alarmHour, alarmMinutes, alarmName, alarmState);
             hourInput.Value = "";
             minutesInput.Value = "";
             nameInput.Value = "";
@@ -50,7 +51,7 @@ namespace Alarm.Views
             var now = DateTime.Now;
             foreach (var alarm in alarmList)
             {
-                if (now.Hour == alarm.hour && now.Minute == alarm.minutes)
+                if (now.Hour == alarm.hour && now.Minute == alarm.minutes && alarm.alarmState == "Active")
                 {
                     msg = $"alert('¡Alarma sonando!')";
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", msg, true);
@@ -91,6 +92,12 @@ namespace Alarm.Views
                 if (alarmId == a.alarmId)
                 {
                     lblalarm.InnerText = a.hour.ToString() + " : " + a.minutes.ToString() + " | " + a.alarmName;
+                    lblstate.InnerText = a.alarmState.ToString();
+
+                    IneditHour.Value = a.hour.ToString();
+                    IneditMinutes.Value = a.minutes.ToString();
+                    IneditName.Value = a.alarmName.ToString();
+                    dropDownState.Value = a.alarmState.ToString();
                 }
             }
 
@@ -105,9 +112,11 @@ namespace Alarm.Views
             int newHour = Convert.ToInt16(IneditHour.Value);
             int newMinutes = Convert.ToInt16(IneditMinutes.Value);
             string newName = IneditName.Value.ToString();
+            string newState = dropDownState.Value.ToString(); 
+
             c.AlarmC alarmController = new c.AlarmC();
 
-            if (alarmController.EditAlarm(alarmId, newHour, newMinutes, newName))
+            if (alarmController.EditAlarm(alarmId, newHour, newMinutes, newName, newState))
             {
                 msg = $"alert('¡Alarma editada!')";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", msg, true);

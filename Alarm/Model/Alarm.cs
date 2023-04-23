@@ -12,5 +12,7 @@ namespace Alarm.Model
         public int minutes {get; set;}
         public string alarmName {get; set;}
         public string alarmDays { get; set; }
+        public string alarmState { get; set; }
+
     }
 }
