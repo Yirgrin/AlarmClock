@@ -12,14 +12,15 @@ namespace Alarm.Database
     {
         SqlConnection connection = new SqlConnection("Data Source=localhost;Initial Catalog=AlarmClock;Integrated Security=True");
 
-        public void SetAlarm (int hour, int minutes, string alarmName, string alarmState)
+        public void SetAlarm (int hour, int minutes, string alarmName, string alarmState, string alarmDay)
         {
             List<SqlParameter> param = new List<SqlParameter>()
             {
                 new SqlParameter("@hour", hour),
                 new SqlParameter("@minutes", minutes),
                 new SqlParameter("@name", alarmName),
-                new SqlParameter("@state", alarmState)
+                new SqlParameter("@state", alarmState),
+                new SqlParameter("@day", alarmDay)
             };
 
             this.ExecuteQuery("[dbo].[spSetAlarm]", param);

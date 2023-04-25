@@ -11,9 +11,9 @@ window.onload = function () {
     setInterval(updateTime, 1000);
 };
 
+
 // Llamar a la función de comprobación cada segundo
 setInterval(CheckAlarms, 1000);
-
 
 function showModal() {
 

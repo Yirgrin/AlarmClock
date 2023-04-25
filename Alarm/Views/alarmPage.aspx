@@ -26,7 +26,7 @@
 
 <body>
     <form id="form1" runat="server">
-        <div class="wrapper">
+        <div class="wrapper" style="width: 100%; max-width: 50em; padding: 3em 6em;">
             <div class="timerDisplay" id="lbltime" runat="server">00:00:00</div>
             <div class="container">
                 <div class="inputs">
@@ -36,6 +36,16 @@
                         placeholder="00" min="0" max="59" />
                     <input type="text" id="nameInput" runat="server"
                         placeholder="alarm name" />
+                    <select id="dropDownDay" runat="server" class="form-select" aria-label=".form-select-sm example">
+                        <option></option>
+                        <option value="lunes">Lunes</option>
+                        <option value="martes">Martes</option>
+                        <option value="miercoles">Miercoles</option>
+                        <option value="jueves">Jueves</option>
+                        <option value="viernes">Viernes</option>
+                        <option value="sabado">Sabado</option>
+                        <option value="domingo">Domingo</option>
+                    </select>
                     <button id="checkAlarm" runat="server" onserverclick="checkAlarm_ServerClick" style="font-size: 2em; border: none; cursor: pointer; background-color: transparent;">
                         <img src="../css/clock.png" /></button>
                 </div>
@@ -75,14 +85,14 @@
                         <div class="container">
                             <div class="inputs">
                                 <input type="number" id="IneditHour" runat="server"
-                                    placeholder="00" min="0" max="23"> 
+                                    placeholder="00" min="0" max="23">
                                 <input type="number" id="IneditMinutes" runat="server"
                                     placeholder="00" min="0" max="59" />
                                 <input type="text" id="IneditName" runat="server"
                                     placeholder="alarm name" />
                             </div>
                         </div>
-                        <div style="text-align: center; display: flex; width: 200px; gap: 1em; margin-top: 1.5em; border: 1px solid; border-radius: 0.3em;  margin-left: 13px; color: lightslategrey">
+                        <div style="text-align: center; display: flex; width: 200px; gap: 1em; margin-top: 1.5em; border: 1px solid; border-radius: 0.3em; margin-left: 13px; color: lightslategrey">
                             <select id="dropDownState" runat="server" class="form-select" aria-label=".form-select-sm example">
                                 <option></option>
                                 <option value="Active">Active</option>

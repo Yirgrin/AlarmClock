@@ -15,9 +15,6 @@ body {
 
 .wrapper {
     background-color: darkslategrey;
-    width: 90%;
-    max-width: 40em;
-    padding: 3.12em 5em;
     position: absolute;
     transform: translateX(-50%);
     left: 50%;

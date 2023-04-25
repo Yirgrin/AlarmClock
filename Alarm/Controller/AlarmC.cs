@@ -10,13 +10,13 @@ namespace Alarm.Controller
 {
     public class AlarmC
     {
-        public bool SetAlarm(int hour, int minutes, string alarmName, string alarmState)
+        public bool SetAlarm(int hour, int minutes, string alarmName, string alarmState, string alarmDay)
         {
             try
             {
                 Database.Database db = new Database.Database();
 
-                db.SetAlarm(hour, minutes, alarmName, alarmState);
+                db.SetAlarm(hour, minutes, alarmName, alarmState, alarmDay);
 
                 return true;
             }
@@ -84,6 +84,7 @@ namespace Alarm.Controller
                     minutes = Convert.ToInt32(row["minutes"]),
                     alarmName = Convert.ToString(row["name"]),
                     alarmState = Convert.ToString(row["alarmState"]),
+                    alarmDays = Convert.ToString(row["alarmDay"])
                 });
             }
 

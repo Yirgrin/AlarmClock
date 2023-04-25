@@ -14,11 +14,12 @@ using System.Threading;
 namespace Alarm.Views
 {
 
-    public partial class alarmPage : System.Web.UI.Page
+    public partial class alarmPage : System.Web.UI.Page 
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadAlarm();
+            
         }   
 
         protected void LoadAlarm()
@@ -34,9 +35,10 @@ namespace Alarm.Views
             int alarmMinutes = Convert.ToInt16(minutesInput.Value);
             string alarmName = nameInput.Value.ToString();
             string alarmState = "Active";
+            string alarmDay = dropDownDay.Value.ToString();
 
             c.AlarmC alarmController = new c.AlarmC();
-            alarmController.SetAlarm(alarmHour, alarmMinutes, alarmName, alarmState);
+            alarmController.SetAlarm(alarmHour, alarmMinutes, alarmName, alarmState, alarmDay);
             hourInput.Value = "";
             minutesInput.Value = "";
             nameInput.Value = "";
@@ -49,9 +51,11 @@ namespace Alarm.Views
             c.AlarmC alarmController = new c.AlarmC();
             List<m.Alarm> alarmList = alarmController.GetAlarms();
             var now = DateTime.Now;
+            string dayWeek = now.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
+
             foreach (var alarm in alarmList)
             {
-                if (now.Hour == alarm.hour && now.Minute == alarm.minutes && alarm.alarmState == "Active")
+                if (now.Hour == alarm.hour && now.Minute == alarm.minutes && alarm.alarmState == "Active" && alarm.alarmDays == dayWeek)
                 {
                     msg = $"alert('¡Alarma sonando!')";
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", msg, true);
@@ -92,7 +96,7 @@ namespace Alarm.Views
                 if (alarmId == a.alarmId)
                 {
                     lblalarm.InnerText = a.hour.ToString() + " : " + a.minutes.ToString() + " | " + a.alarmName;
-                    lblstate.InnerText = a.alarmState.ToString();
+                    lblstate.InnerText = a.alarmState.ToString() + " : " + a.alarmDays.ToString();
 
                     IneditHour.Value = a.hour.ToString();
                     IneditMinutes.Value = a.minutes.ToString();
@@ -133,5 +137,6 @@ namespace Alarm.Views
         {
             CheckAlarms(); 
         }
+
     }
 }
