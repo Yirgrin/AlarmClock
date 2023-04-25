@@ -80,8 +80,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <h4 id="lblalarm" runat="server" style="text-align: center;"></h4>
-                        <h4 id="lblstate" runat="server" style="text-align: center;"></h4>
+                        <p id="lblalarm" runat="server" style="text-align: center;"></p>
+                        <p id="lblstate" runat="server" style="text-align: center;"></p>
                         <div class="container">
                             <div class="inputs">
                                 <input type="number" id="IneditHour" runat="server"
@@ -97,6 +97,18 @@
                                 <option></option>
                                 <option value="Active">Active</option>
                                 <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <div style="text-align: center; display: flex; width: 200px; gap: 1em; margin-top: 1.5em; border: 1px solid; border-radius: 0.3em; margin-left: 13px; color: lightslategrey">
+                             <select id="editDropDay" runat="server" class="form-select" aria-label=".form-select-sm example">
+                                <option></option>
+                                <option value="lunes">Lunes</option>
+                                <option value="martes">Martes</option>
+                                <option value="miercoles">Miercoles</option>
+                                <option value="jueves">Jueves</option>
+                                <option value="viernes">Viernes</option>
+                                <option value="sabado">Sabado</option>
+                                <option value="domingo">Domingo</option>
                             </select>
                         </div>
                     </div>

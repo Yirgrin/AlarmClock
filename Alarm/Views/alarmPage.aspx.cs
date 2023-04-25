@@ -42,6 +42,7 @@ namespace Alarm.Views
             hourInput.Value = "";
             minutesInput.Value = "";
             nameInput.Value = "";
+            dropDownDay.Value = ""; 
             LoadAlarm();
         }
 
@@ -96,12 +97,13 @@ namespace Alarm.Views
                 if (alarmId == a.alarmId)
                 {
                     lblalarm.InnerText = a.hour.ToString() + " : " + a.minutes.ToString() + " | " + a.alarmName;
-                    lblstate.InnerText = a.alarmState.ToString() + " : " + a.alarmDays.ToString();
+                    lblstate.InnerText = "Alarm in " + a.alarmState.ToString() + " state. Established days: " + a.alarmDays.ToString();
 
                     IneditHour.Value = a.hour.ToString();
                     IneditMinutes.Value = a.minutes.ToString();
                     IneditName.Value = a.alarmName.ToString();
                     dropDownState.Value = a.alarmState.ToString();
+                    editDropDay.Value = a.alarmDays.ToString();
                 }
             }
 
@@ -117,10 +119,11 @@ namespace Alarm.Views
             int newMinutes = Convert.ToInt16(IneditMinutes.Value);
             string newName = IneditName.Value.ToString();
             string newState = dropDownState.Value.ToString(); 
+            string newDay = editDropDay.Value.ToString();
 
             c.AlarmC alarmController = new c.AlarmC();
 
-            if (alarmController.EditAlarm(alarmId, newHour, newMinutes, newName, newState))
+            if (alarmController.EditAlarm(alarmId, newHour, newMinutes, newName, newState, newDay))
             {
                 msg = $"alert('¡Alarma editada!')";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", msg, true);

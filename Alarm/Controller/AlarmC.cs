@@ -54,13 +54,13 @@ namespace Alarm.Controller
             }
         }
 
-        public bool EditAlarm(int alarmId, int newHour, int newMinutes, string newName, string newState)
+        public bool EditAlarm(int alarmId, int newHour, int newMinutes, string newName, string newState, string newDay)
         {
             try
             {
                 Database.Database db = new Database.Database();
 
-                db.EditAlarm(alarmId, newHour, newMinutes, newName, newState);
+                db.EditAlarm(alarmId, newHour, newMinutes, newName, newState, newDay);
 
                 return true;
             }

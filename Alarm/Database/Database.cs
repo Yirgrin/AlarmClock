@@ -42,7 +42,7 @@ namespace Alarm.Database
             this.ExecuteQuery("[dbo].[spDeleteAlarm]", param);
         }
 
-        public void EditAlarm(int alarmId, int newHour, int newMinutes, string newName, string newState)
+        public void EditAlarm(int alarmId, int newHour, int newMinutes, string newName, string newState, string newDay)
         {
             List<SqlParameter> param = new List<SqlParameter>()
             {
@@ -50,7 +50,8 @@ namespace Alarm.Database
                 new SqlParameter("@newHour", newHour),
                 new SqlParameter("@newMinutes", newMinutes),
                 new SqlParameter("@newName", newName),
-                new SqlParameter("@newState", newState)
+                new SqlParameter("@newState", newState), 
+                new SqlParameter("@newDay", newDay)
 
         };
 
